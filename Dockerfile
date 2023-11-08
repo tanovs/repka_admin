@@ -13,7 +13,7 @@ RUN apt-get update \
 RUN pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
-COPY uwsgi/uwsgi.ini application/uwsgi.ini
+RUN cp uwsgi/uwsgi.ini application/uwsgi.ini
 
 EXPOSE 8000
 

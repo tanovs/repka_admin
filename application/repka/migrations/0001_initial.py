@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             ('Ленинградская область'),
             ('Новосибирская область'),
             ('Красноярский край'),
-            (Любой регион);''',
+            ('Любой регион');''',
             reverse_sql = 'drop table if exists repka.region;',
         ),
         migrations.RunSQL(

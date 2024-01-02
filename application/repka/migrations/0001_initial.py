@@ -470,7 +470,7 @@ class Migration(migrations.Migration):
             sql = '''create table if not exists repka.good(
             id uuid default gen_random_uuid() not null,
             name text not null,
-            photo bytea not null,
+            photo bytea null,
             price text,
             volume text not null,
             balance text not null,

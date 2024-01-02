@@ -73,8 +73,8 @@ class Supplier(UUIDMixin, TimeStampMixin):
     social_network = models.TextField(_('social_network'), blank=True)  # Cоциальные сети
     delivery_region = models.ManyToManyField(Region, through='SupplierRegion')# Регион доставки
     delivery_city = models.ManyToManyField(City, through='SupplierCity')  # Город доставки
-    delivery_time = models.TextField(_('delivery_time'))  # Время доставки
-    delivery_day = models.TextField(_('delivery_day'))  # Сроки доставки
+    delivery_day_time = models.TextField(_('delivery_day_time'))  # Время доставки
+    estimated_delivery_time = models.TextField(_('estimated_delivery_time'))  # Время доставки
     min_price = models.TextField(_('min_price'))  # Минимальная цена заказа
     ooo = models.TextField(_('OOO'), blank=True)  # ООО/ИП/Самозанятость
     ogrn = models.TextField(_('OGRN'), blank=True)  # ОГРН
@@ -143,6 +143,9 @@ class Good(TimeStampMixin, UUIDMixin):
     calories = models.TextField(_('calories'), blank=True)  # КБЖУ
     compound = models.TextField(_('compound'), blank=True)  # Состав
     expiration_day = models.TextField(_('expiration_day'), blank=True)  # Срок годности и условия хранения
+    producer = models.TextField(_('producer'), blank=True)
+    sample = models.BooleanField(_('sample'))
+    sample_amount = models.IntegerField(_('sample_amount'))
     category = models.ManyToManyField(Category, through='GoodCategory')
     supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE)
 

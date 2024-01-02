@@ -42,7 +42,7 @@ class SupplierAdmin(admin.ModelAdmin):
     list_display = (
         'company_name', 'contact_name', 'phone_number',
         'email', 'company_adress', 'website', 'social_network', 
-        'delivery_time', 'delivery_day', 'get_regions', 'get_cities', 'min_price', 'ooo',
+        'delivery_day_time', 'estimated_delivery_time', 'get_regions', 'get_cities', 'min_price', 'ooo',
         'ogrn', 'inn', 'created', 'modified',
     )
     list_filter = ('created', 'modified')

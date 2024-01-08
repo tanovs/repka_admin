@@ -62,7 +62,7 @@ class GoodAdmin(admin.ModelAdmin):
     inline = (GoodCategoryInline, )
 
     list_display = (
-        'name', 'photo', 'price', 'volume', 'balance', 'calories',
+        'name', 'price', 'volume', 'balance', 'calories',
         'compound', 'expiration_day', 'supplier', 'created', 'modified',
     )
     list_filter = ('created', 'modified')
@@ -71,6 +71,6 @@ class GoodAdmin(admin.ModelAdmin):
 @admin.register(SupplierCert)
 class SupplierCertAdmin(admin.ModelAdmin):
     list_display = (
-        'certificate', 'certificate_url', 'supplier', 'created', 'modified',
+        'certificate_url', 'supplier', 'created', 'modified',
     )
     list_filter = ('created', 'modified')

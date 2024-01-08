@@ -76,6 +76,7 @@ class Supplier(UUIDMixin, TimeStampMixin):
     delivery_day_time = models.TextField(_('delivery_day_time'))  # Время доставки
     estimated_delivery_time = models.TextField(_('estimated_delivery_time'))  # Время доставки
     min_price = models.TextField(_('min_price'))  # Минимальная цена заказа
+    orders_day_time = models.TextField(_('orders_day_time'))
     ooo = models.TextField(_('OOO'), blank=True)  # ООО/ИП/Самозанятость
     ogrn = models.TextField(_('OGRN'), blank=True)  # ОГРН
     inn = models.TextField(_('INN'), blank=True)  # ИНН
@@ -99,7 +100,7 @@ class SupplierCert(UUIDMixin, TimeStampMixin):
         verbose_name_plural = "Сертификаты поставщиков"
     
     def __str__(self) -> str:
-        return self.certificate
+        return self.certificate_url
 
 class GoodCategory(UUIDMixin):
     good = models.ForeignKey('Good', on_delete=models.CASCADE)
@@ -136,7 +137,7 @@ class Tag(UUIDMixin, TimeStampMixin):
 
 class Good(TimeStampMixin, UUIDMixin):
     name = models.TextField(_('name'))  # наименование товара
-    photo = models.ImageField(_('photo'))  # фото товара
+    photo = models.ImageField(_('photo'), blank=True)  # фото товара
     price = models.TextField(_('price'))  # цена товара
     volume = models.TextField(_('volume'))  # объем товара
     balance = models.TextField(_('balance'))  # остаток товара
@@ -144,9 +145,9 @@ class Good(TimeStampMixin, UUIDMixin):
     compound = models.TextField(_('compound'), blank=True)  # Состав
     expiration_day = models.TextField(_('expiration_day'), blank=True)  # Срок годности и условия хранения
     producer = models.TextField(_('producer'), blank=True)
-    sample = models.BooleanField(_('sample'))
-    sample_amount = models.IntegerField(_('sample_amount'))
-    category = models.ManyToManyField(Category, through='GoodCategory')
+    sample = models.BooleanField(_('sample'), blank=True)
+    sample_amount = models.IntegerField(_('sample_amount'), blank=True)
+    tag = models.ForeignKey('Tag', on_delete=models.CASCADE)
     supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE)
 
     class Meta:
